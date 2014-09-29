@@ -3,5 +3,6 @@
         "uuid": "more-keyboard-shortcuts@stderr.nl",
         "name": "More keyboard shortcuts",
         "description": "Adds some additional keyboard shortcuts for navigating through windows",
-        "url": "https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts"
+        "url": "https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts",
+        "settings-schema": "org.gnome.shell.extensions.more-keyboard-shortcuts"
 }

@@ -27,8 +27,15 @@
  * This is a simple gnome-shell extension that adds some extra keyboard
  * shortcuts for navigating through windows.
  */
+const ExtensionUtils = imports.misc.extensionUtils;
+
+const Me = ExtensionUtils.getCurrentExtension();
+const Convenience = Me.imports.convenience;
+
+let settings;
 
 function init() {
+    settings = Convenience.getSettings();
 }
 
 function enable() {
