@@ -27,6 +27,9 @@
  * This is a simple gnome-shell extension that adds some extra keyboard
  * shortcuts for navigating through windows.
  */
+const Meta = imports.gi.Meta;
+const Main = imports.ui.main;
+const Shell = imports.gi.Shell;
 const ExtensionUtils = imports.misc.extensionUtils;
 
 const Me = ExtensionUtils.getCurrentExtension();
@@ -38,7 +41,67 @@ function init() {
     settings = Convenience.getSettings();
 }
 
+function switchWindow(next) {
+    let workspace = global.screen.get_active_workspace();
+    let windows = workspace.list_windows();
+
+    // Generate a stable ordering for the window list (based on the
+    // Frippery Bottom Panel extension)
+    windows.sort(function(w1, w2) {
+        return w1.get_stable_sequence() - w2.get_stable_sequence();
+    });
+
+    // Find out the index of the current window
+    let current_idx = -1;
+    for ( let i = 0; i < windows.length; ++i ) {
+        if (windows[i].has_focus()) {
+            current_idx = i;
+            break;
+        }
+    }
+
+    // Figure out what window to focus
+    let target_idx;
+    if (current_idx < 0) {
+        // No window was focused, just focus the first in the list
+        target_idx = 0;
+    } else {
+        // Focuse the next/previous window that does not have
+        // skip_taskbar set
+        target_idx = current_idx;
+        do {
+            target_idx += (next ? 1 : -1);
+            // Modulo doesn't handle -1 here, so make sure we are
+            // positive first
+            target_idx += windows.length;
+            target_idx %= windows.length;
+        } while (windows[target_idx].skip_taskbar && target_idx != i);
+    }
+
+    Main.activateWindow(windows[target_idx]);
+}
+
 function enable() {
+    // Switch to the next/previous window within this workspace. Window
+    // ordering is fixed (not based on most recent use like the alt-tab
+    // switcher) so it can match a window list shown by e.g. the
+    // Frippery Bottom Panel.
+    Main.wm.addKeybinding("switch-window-next-workspace",
+        settings,
+        Meta.KeyBindingFlags.NONE,
+        Shell.KeyBindingMode.NORMAL,
+        function(display, screen, window, binding) {
+            switchWindow(true);
+        }
+    );
+    Main.wm.addKeybinding("switch-window-prev-workspace",
+        settings,
+        Meta.KeyBindingFlags.NONE,
+        Shell.KeyBindingMode.NORMAL,
+        function(display, screen, window, binding) {
+            switchWindow(false);
+        }
+    );
 }
 
 function disable() {

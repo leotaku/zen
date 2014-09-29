@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
     <schema id="org.gnome.shell.extensions.more-keyboard-shortcuts" path="/org/gnome/shell/extensions/more-keyboard-shortcuts/">
+        <key type="as" name="switch-window-next-workspace">
+            <default><![CDATA[['<Super>j']]]></default>
+            <summary>Switch to the next window on the current workspace</summary>
+        </key>
+        <key type="as" name="switch-window-prev-workspace">
+            <default><![CDATA[['<Super>k']]]></default>
+            <summary>Switch to the previous window on the current workspace</summary>
+        </key>
     </schema>
 </schemalist>
