@@ -75,7 +75,7 @@ function switchWindow(next) {
             // positive first
             target_idx += windows.length;
             target_idx %= windows.length;
-        } while (windows[target_idx].skip_taskbar && target_idx != i);
+        } while (windows[target_idx].skip_taskbar && target_idx != current_idx);
     }
 
     Main.activateWindow(windows[target_idx]);
