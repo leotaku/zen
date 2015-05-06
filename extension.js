@@ -41,6 +41,17 @@ function init() {
     settings = Convenience.getSettings();
 }
 
+function get_focus_window() {
+    let workspace = global.screen.get_active_workspace();
+    let windows = workspace.list_windows();
+    for ( let i = 0; i < windows.length; ++i ) {
+        if (windows[i].has_focus()) {
+            return windows[i];
+        }
+    }
+    return null;
+}
+
 function switchWindow(next) {
     let workspace = global.screen.get_active_workspace();
     let windows = workspace.list_windows();
@@ -51,10 +62,20 @@ function switchWindow(next) {
         return w1.get_stable_sequence() - w2.get_stable_sequence();
     });
 
+    current_window = get_focus_window();
+
+    // If the current window is a transient modal window, resolve it
+    // to the real, non-transient window first (which is the one
+    // that is shown in the taskbar).
+    while (current_window &&
+           current_window.get_window_type() == Meta.WindowType.MODAL_DIALOG &&
+           current_window.get_transient_for())
+        current_window = current_window.get_transient_for();
+
     // Find out the index of the current window
     let current_idx = -1;
     for ( let i = 0; i < windows.length; ++i ) {
-        if (windows[i].has_focus()) {
+        if (windows[i] == current_window) {
             current_idx = i;
             break;
         }
@@ -66,8 +87,11 @@ function switchWindow(next) {
         // No window was focused, just focus the first in the list
         target_idx = 0;
     } else {
-        // Focuse the next/previous window that does not have
-        // skip_taskbar set
+        // Focus the next/previous window that does not have
+        // skip_taskbar and is not a modal window. Note that focusing a
+        // window that has a modal transient will focus the modal
+        // instead, but the code above resolves that back to the real
+        // window, so everything still works as you'd expect.
         target_idx = current_idx;
         do {
             target_idx += (next ? 1 : -1);
@@ -75,7 +99,11 @@ function switchWindow(next) {
             // positive first
             target_idx += windows.length;
             target_idx %= windows.length;
-        } while (windows[target_idx].skip_taskbar && target_idx != current_idx);
+            // Don't keep looping if this is the only focusable window
+            if (target_idx == current_idx)
+                break;
+        } while (windows[target_idx].skip_taskbar ||
+                 windows[target_idx].get_window_type() == Meta.WindowType.MODAL_DIALOG);
     }
 
     Main.activateWindow(windows[target_idx]);
