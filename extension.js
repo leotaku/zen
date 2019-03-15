@@ -62,7 +62,7 @@ function switchWindow(next) {
         return w1.get_stable_sequence() - w2.get_stable_sequence();
     });
 
-    current_window = get_focus_window();
+    var current_window = get_focus_window();
 
     // If the current window is a transient modal window, resolve it
     // to the real, non-transient window first (which is the one
