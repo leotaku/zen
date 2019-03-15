@@ -17,10 +17,12 @@ Alternatively, download a zip from github and use
 gnome-tweak-tool to install it.
 
 Configuring shortcuts needs to happen manually right now, through e.g
-dconf-editor or gsettings. For those tools to know about the settings, first
-link or copy the
-`schemas/org.gnome.shell.extensions.more-keyboard-shortcuts.gschema.xml` file
-to `/usr/share/glib-2.0/schemas`. The settings then live under the
+dconf-editor or gsettings. For those tools to know about the settings,
+first link or copy the
+`schemas/org.gnome.shell.extensions.more-keyboard-shortcuts.gschema.xml`
+file to `/usr/share/glib-2.0/schemas` or
+`~/.local/share/glib-2.0/schemas` and run `glib-compile-schemas` on the
+directory you installed it in. The settings then live under the
 org.gnome.shell.extensions.more-keyboard-shortcuts id / path.
 
 License
