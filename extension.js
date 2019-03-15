@@ -42,7 +42,7 @@ function init() {
 }
 
 function get_focus_window() {
-    let workspace = global.screen.get_active_workspace();
+    let workspace = (global.screen || global.workspace_manager).get_active_workspace();
     let windows = workspace.list_windows();
     for ( let i = 0; i < windows.length; ++i ) {
         if (windows[i].has_focus()) {
@@ -53,7 +53,7 @@ function get_focus_window() {
 }
 
 function switchWindow(next) {
-    let workspace = global.screen.get_active_workspace();
+    let workspace = (global.screen || global.workspace_manager).get_active_workspace();
     let windows = workspace.list_windows();
 
     // Generate a stable ordering for the window list (based on the
