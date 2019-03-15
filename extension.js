@@ -117,7 +117,7 @@ function enable() {
     Main.wm.addKeybinding("switch-window-next-workspace",
         settings,
         Meta.KeyBindingFlags.NONE,
-        Shell.KeyBindingMode.NORMAL,
+        Shell.ActionMode ? Shell.ActionMode.NORMAL : Shell.KeyBindingMode.NORMAL,
         function(display, screen, window, binding) {
             switchWindow(true);
         }
@@ -125,7 +125,7 @@ function enable() {
     Main.wm.addKeybinding("switch-window-prev-workspace",
         settings,
         Meta.KeyBindingFlags.NONE,
-        Shell.KeyBindingMode.NORMAL,
+        Shell.ActionMode ? Shell.ActionMode.NORMAL : Shell.KeyBindingMode.NORMAL,
         function(display, screen, window, binding) {
             switchWindow(false);
         }
