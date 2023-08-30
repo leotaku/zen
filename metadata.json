@@ -1,8 +1,9 @@
 {
-        "shell-version": ["3.12", "3.14", "3.22", "3.30", "40", "42", "43"],
-        "uuid": "more-keyboard-shortcuts@stderr.nl",
-        "name": "More keyboard shortcuts",
-        "description": "Adds some additional keyboard shortcuts for navigating through windows",
-        "url": "https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts",
-        "settings-schema": "org.gnome.shell.extensions.more-keyboard-shortcuts"
+  "shell-version": ["44"],
+  "uuid": "zen@le0.gs",
+  "name": "Zen",
+  "version": 1,
+  "description": "Various tweaks for modern Gnome shell",
+  "url": "https://github.com/leotaku/zen",
+  "settings-schema": "org.gnome.shell.extensions.zen"
 }

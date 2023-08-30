@@ -33,13 +33,6 @@ const Shell = imports.gi.Shell;
 const ExtensionUtils = imports.misc.extensionUtils;
 
 const Me = ExtensionUtils.getCurrentExtension();
-const Convenience = Me.imports.convenience;
-
-let settings;
-
-function init() {
-    settings = Convenience.getSettings();
-}
 
 function get_focus_window() {
     let workspace = (global.screen || global.workspace_manager).get_active_workspace();
@@ -109,13 +102,18 @@ function switchWindow(next) {
     Main.activateWindow(windows[target_idx]);
 }
 
-function enable() {
+class Extension {
+  constructor() {
+    this.settings = ExtensionUtils.getSettings();
+  }
+
+  enable() {
     // Switch to the next/previous window within this workspace. Window
     // ordering is fixed (not based on most recent use like the alt-tab
     // switcher) so it can match a window list shown by e.g. the
     // Frippery Bottom Panel.
     Main.wm.addKeybinding("switch-window-next-workspace",
-        settings,
+        this.settings,
         Meta.KeyBindingFlags.NONE,
         Shell.ActionMode ? Shell.ActionMode.NORMAL : Shell.KeyBindingMode.NORMAL,
         function(display, screen, window, binding) {
@@ -123,14 +121,19 @@ function enable() {
         }
     );
     Main.wm.addKeybinding("switch-window-prev-workspace",
-        settings,
+        this.settings,
         Meta.KeyBindingFlags.NONE,
         Shell.ActionMode ? Shell.ActionMode.NORMAL : Shell.KeyBindingMode.NORMAL,
         function(display, screen, window, binding) {
             switchWindow(false);
         }
     );
+  }
+
+  disable() {
+  }
 }
 
-function disable() {
+function init() {
+    return new Extension();
 }
