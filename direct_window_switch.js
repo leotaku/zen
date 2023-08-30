@@ -22,11 +22,15 @@
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+**/
+
+/**
+ * Adapted from the gnome-shell-more-keyboard-shortcuts extension
+ * project by Matthijs Kooijman.
  *
- *
- * This is a simple gnome-shell extension that adds some extra keyboard
- * shortcuts for navigating through windows.
- */
+ * https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts
+**/
+
 const Meta = imports.gi.Meta;
 const Main = imports.ui.main;
 const Shell = imports.gi.Shell;
@@ -139,7 +143,7 @@ function switchWindow(next) {
     restore_pointer_for_window(window);
 }
 
-class Extension {
+var Extension = class Extension {
     constructor() {
         this.settings = ExtensionUtils.getSettings();
     }
