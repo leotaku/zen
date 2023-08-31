@@ -15,21 +15,24 @@ var Extension = class Extension {
     }
 
     enable() {
-        this.create_signal = global.display.connect('window-created', function (_, window) {
-            const type = window.get_window_type();
-            if (type !== Meta.WindowType.NORMAL) {
-                return;
-            }
+        this.create_signal = global.display.connect(
+            "window-created",
+            function (_, window) {
+                const type = window.get_window_type();
+                if (type !== Meta.WindowType.NORMAL) {
+                    return;
+                }
 
-            let fn = () => focus_window(window);
-            setTimeout(fn, 200);
-        });
+                let fn = () => focus_window(window);
+                setTimeout(fn, 200);
+            },
+        );
     }
 
     disable() {
         global.display.disconnect(this.create_signal);
     }
-}
+};
 
 function init() {
     return new Extension();

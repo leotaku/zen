@@ -22,14 +22,14 @@
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
-**/
+ **/
 
 /**
  * Adapted from the gnome-shell-more-keyboard-shortcuts extension
  * project by Matthijs Kooijman.
  *
  * https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts
-**/
+ **/
 
 const Meta = imports.gi.Meta;
 const Main = imports.ui.main;
@@ -51,8 +51,8 @@ function absolute_to_relative(x, y, rect) {
 }
 
 function relative_to_absolute(x, y, rect) {
-    let abs_x = (x * rect.width) + rect.x;
-    let abs_y = (y * rect.height) + rect.y;
+    let abs_x = x * rect.width + rect.x;
+    let abs_y = y * rect.height + rect.y;
 
     return [abs_x, abs_y];
 }
@@ -83,12 +83,14 @@ function restore_pointer_for_window(window) {
 }
 
 function switchWindow(next) {
-    let workspace = (global.screen || global.workspace_manager).get_active_workspace();
+    let workspace = (
+        global.screen || global.workspace_manager
+    ).get_active_workspace();
     let windows = workspace.list_windows();
 
     // Generate a stable ordering for the window list (based on the
     // Frippery Bottom Panel extension)
-    windows.sort(function(w1, w2) {
+    windows.sort(function (w1, w2) {
         return w1.get_stable_sequence() - w2.get_stable_sequence();
     });
 
@@ -97,14 +99,16 @@ function switchWindow(next) {
     // If the current window is a transient modal window, resolve it
     // to the real, non-transient window first (which is the one
     // that is shown in the taskbar).
-    while (current_window &&
-           current_window.get_window_type() == Meta.WindowType.MODAL_DIALOG &&
-           current_window.get_transient_for())
+    while (
+        current_window &&
+        current_window.get_window_type() == Meta.WindowType.MODAL_DIALOG &&
+        current_window.get_transient_for()
+    )
         current_window = current_window.get_transient_for();
 
     // Find out the index of the current window
     let current_idx = -1;
-    for ( let i = 0; i < windows.length; ++i ) {
+    for (let i = 0; i < windows.length; ++i) {
         if (windows[i] == current_window) {
             current_idx = i;
             break;
@@ -124,16 +128,18 @@ function switchWindow(next) {
         // window, so everything still works as you'd expect.
         target_idx = current_idx;
         do {
-            target_idx += (next ? 1 : -1);
+            target_idx += next ? 1 : -1;
             // Modulo doesn't handle -1 here, so make sure we are
             // positive first
             target_idx += windows.length;
             target_idx %= windows.length;
             // Don't keep looping if this is the only focusable window
-            if (target_idx == current_idx)
-                break;
-        } while (windows[target_idx].skip_taskbar ||
-                 windows[target_idx].get_window_type() == Meta.WindowType.MODAL_DIALOG);
+            if (target_idx == current_idx) break;
+        } while (
+            windows[target_idx].skip_taskbar ||
+            windows[target_idx].get_window_type() ==
+                Meta.WindowType.MODAL_DIALOG
+        );
     }
 
     let window = windows[target_idx];
@@ -153,21 +159,27 @@ var Extension = class Extension {
         // ordering is fixed (not based on most recent use like the alt-tab
         // switcher) so it can match a window list shown by e.g. the
         // Frippery Bottom Panel.
-        Main.wm.addKeybinding("switch-window-next-workspace",
+        Main.wm.addKeybinding(
+            "switch-window-next-workspace",
             this.settings,
             Meta.KeyBindingFlags.NONE,
-            Shell.ActionMode ? Shell.ActionMode.NORMAL : Shell.KeyBindingMode.NORMAL,
-            function(display, screen, window, binding) {
+            Shell.ActionMode
+                ? Shell.ActionMode.NORMAL
+                : Shell.KeyBindingMode.NORMAL,
+            function (display, screen, window, binding) {
                 switchWindow(true);
-            }
+            },
         );
-        Main.wm.addKeybinding("switch-window-prev-workspace",
+        Main.wm.addKeybinding(
+            "switch-window-prev-workspace",
             this.settings,
             Meta.KeyBindingFlags.NONE,
-            Shell.ActionMode ? Shell.ActionMode.NORMAL : Shell.KeyBindingMode.NORMAL,
-            function(display, screen, window, binding) {
+            Shell.ActionMode
+                ? Shell.ActionMode.NORMAL
+                : Shell.KeyBindingMode.NORMAL,
+            function (display, screen, window, binding) {
                 switchWindow(false);
-            }
+            },
         );
     }
 
@@ -175,7 +187,7 @@ var Extension = class Extension {
         Main.wm.removeKeybinding("switch-window-next-workspace");
         Main.wm.removeKeybinding("switch-window-prev-workspace");
     }
-}
+};
 
 function init() {
     return new Extension();
