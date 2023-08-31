@@ -24,8 +24,18 @@
  ! CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  ! SOFTWARE.
 -->
-<schemalist>
+<schemalist gettext-domain="zen@le0.gs">
     <schema id="org.gnome.shell.extensions.zen" path="/org/gnome/shell/extensions/zen/">
+        <!-- Features -->
+        <key type="b" name="enable-direct-window-switch">
+            <default>true</default>
+            <summary>Enables Super-TAB and Super-Shift-TAB bindings for quick window switching</summary>
+        </key>
+        <key type="b" name="enable-focus-new-window">
+            <default>true</default>
+            <summary>Enables automatic focusing of newly created windows</summary>
+        </key>
+        <!-- Bindings -->
         <key type="as" name="switch-window-next-workspace">
             <default><![CDATA[['<Super>TAB']]]></default>
             <summary>Switch to the next window on the current workspace</summary>
