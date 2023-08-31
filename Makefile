@@ -62,11 +62,6 @@ restart-shell:
 		gnome-session-quit --logout; \
 	fi
 
-update-repository:
-	git fetch origin
-	git reset --hard origin/master
-	git clean -fd
-
 zip-file: all
 	cd $(BUILD) && zip -qr "../$(UUID)_$(VERSION).zip" .
 
