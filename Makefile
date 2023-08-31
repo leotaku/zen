@@ -20,7 +20,7 @@ $(info UUID is "$(UUID)")
 
 .PHONY: all clean install zip-file
 
-sources = src/** LICENSE README.md
+sources = src/** schemas LICENSE README.md
 
 clean:
 	rm -rf _build target
