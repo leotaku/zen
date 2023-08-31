@@ -19,7 +19,7 @@ INSTALLNAME = $(UUID)
 
 $(info UUID is "$(UUID)")
 
-sources = src/** schemas LICENSE README.md
+sources = src/** schemas metadata.json LICENSE README.md
 
 .PHONY: clean compile debug enable disable listen local-install
 .PHONY: install uninstall restart-shell zip-file
