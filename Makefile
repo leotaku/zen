@@ -1,5 +1,6 @@
 UUID = zen@le0.gs
 VERSION = 1
+BUILD = _build
 
 ifeq ($(XDG_DATA_HOME),)
 XDG_DATA_HOME = $(HOME)/.local/share
@@ -24,12 +25,12 @@ sources = src/** schemas LICENSE README.md
 .PHONY: install uninstall restart-shell zip-file
 
 clean:
-	rm -rf _build target
+	rm -rf $(BUILD) target
 
 compile: $(sources) clean
-	mkdir -p _build
-	cp -r $(sources) _build
-	glib-compile-schemas _build/schemas
+	mkdir -p $(BUILD)
+	cp -r $(sources) $(BUILD)
+	glib-compile-schemas $(BUILD)/schemas
 
 debug: compile install enable restart-shell listen
 
@@ -47,7 +48,7 @@ local-install: compile install restart-shell enable
 install:
 	rm -rf $(INSTALLBASE)/$(INSTALLNAME)
 	mkdir -p $(INSTALLBASE)/$(INSTALLNAME) $(PLUGIN_BASE) $(SCRIPTS_BASE)
-	cp -r _build/* $(INSTALLBASE)/$(INSTALLNAME)/
+	cp -r $(BUILD)/* $(INSTALLBASE)/$(INSTALLNAME)/
 
 uninstall:
 	rm -rf $(INSTALLBASE)/$(INSTALLNAME)
@@ -67,6 +68,6 @@ update-repository:
 	git clean -fd
 
 zip-file: all
-	cd _build && zip -qr "../$(UUID)_$(VERSION).zip" .
+	cd $(BUILD) && zip -qr "../$(UUID)_$(VERSION).zip" .
 
 .NOTPARALLEL: debug local-install
