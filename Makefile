@@ -18,9 +18,10 @@ INSTALLNAME = $(UUID)
 
 $(info UUID is "$(UUID)")
 
-.PHONY: all clean install zip-file
-
 sources = src/** schemas LICENSE README.md
+
+.PHONY: clean compile debug enable disable listen local-install
+.PHONY: install uninstall restart-shell zip-file
 
 clean:
 	rm -rf _build target
