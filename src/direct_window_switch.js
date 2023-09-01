@@ -57,7 +57,7 @@ function relative_to_absolute(x, y, rect) {
     return [abs_x, abs_y];
 }
 
-function remember_pointer_for_window(window) {
+function rememberPointerForWindow(window) {
     let rect = window.get_buffer_rect();
     let [mouse_x, mouse_y, _] = global.get_pointer();
     let [rel_x, rel_y] = absolute_to_relative(mouse_x, mouse_y, rect);
@@ -65,7 +65,7 @@ function remember_pointer_for_window(window) {
     window.__zen_window_coords = [rel_x, rel_y];
 }
 
-function restore_pointer_for_window(window) {
+function restorePointerForWindow(window) {
     let rect = window.get_buffer_rect();
     let seat = Clutter.get_default_backend().get_default_seat();
 
@@ -144,9 +144,9 @@ function switchWindow(next) {
 
     let window = windows[target_idx];
 
-    remember_pointer_for_window(current_window);
+    rememberPointerForWindow(current_window);
     Main.activateWindow(window);
-    restore_pointer_for_window(window);
+    restorePointerForWindow(window);
 }
 
 var Extension = class Extension {

@@ -2,7 +2,7 @@ const Meta = imports.gi.Meta;
 const Clutter = imports.gi.Clutter;
 const ExtensionUtils = imports.misc.extensionUtils;
 
-function focus_window(window) {
+function focusWindow(window) {
     let rect = window.get_buffer_rect();
     let seat = Clutter.get_default_backend().get_default_seat();
 
@@ -23,7 +23,7 @@ var Extension = class Extension {
                     return;
                 }
 
-                let fn = () => focus_window(window);
+                let fn = () => focusWindow(window);
                 setTimeout(fn, 200);
             },
         );
