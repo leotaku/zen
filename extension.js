@@ -1,8 +1,8 @@
 const ExtensionUtils = imports.misc.extensionUtils;
 
 const Me = ExtensionUtils.getCurrentExtension();
-const DirectWindowSwitch = Me.imports.direct_window_switch;
-const FocusNewWindow = Me.imports.focus_new_window;
+const DirectWindowSwitch = Me.imports.src.direct_window_switch;
+const FocusNewWindow = Me.imports.src.focus_new_window;
 
 function conditionallyEnable(settings, key, extension) {
     settings.get_boolean(key) ? extension.enable() : null;
