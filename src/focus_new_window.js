@@ -17,7 +17,7 @@ var Extension = class Extension {
 
         this.create_signal = global.display.connect(
             "window-created",
-            function (_, window) {
+            function (display, window) {
                 const type = window.get_window_type();
                 if (type !== Meta.WindowType.NORMAL) {
                     return;
