@@ -49,6 +49,10 @@ class Extension {
     disable() {
         this.direct_window_switch.disable();
         this.focus_new_window.disable();
+
+        this.direct_window_switch = null;
+        this.focus_new_window = null;
+        this.settings = null;
     }
 }
 

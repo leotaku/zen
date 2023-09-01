@@ -182,6 +182,8 @@ var Extension = class Extension {
     disable() {
         Main.wm.removeKeybinding("switch-window-next-workspace");
         Main.wm.removeKeybinding("switch-window-prev-workspace");
+
+        this.settings = null;
     }
 };
 

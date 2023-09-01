@@ -31,6 +31,9 @@ var Extension = class Extension {
 
     disable() {
         global.display.disconnect(this.create_signal);
+
+        this.create_signal = null;
+        this.settings = null;
     }
 };
 
