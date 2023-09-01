@@ -51,8 +51,8 @@ function fillPreferencesWindow(window) {
   window.add(prefsPage);
 
   const group = new Adw.PreferencesGroup({
-    title: _("Features"),
-    description: _("Select any features you want to have enabled"),
+    title: _("Components"),
+    description: _("Select any components you want to have enabled"),
   });
   prefsPage.add(group);
 
