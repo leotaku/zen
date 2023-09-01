@@ -13,13 +13,13 @@ function conditionallyEnable(settings, key, extension) {
 }
 
 class Extension {
-    constructor() {
+    constructor() {}
+
+    enable() {
         this.settings = ExtensionUtils.getSettings();
         this.direct_window_switch = new DirectWindowSwitch.Extension();
         this.focus_new_window = new FocusNewWindow.Extension();
-    }
 
-    enable() {
         conditionallyEnable(
             this.settings,
             "enable-direct-window-switch",

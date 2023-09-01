@@ -150,11 +150,11 @@ function switchWindow(next) {
 }
 
 var Extension = class Extension {
-    constructor() {
-        this.settings = ExtensionUtils.getSettings();
-    }
+    constructor() {}
 
     enable() {
+        this.settings = ExtensionUtils.getSettings();
+
         // Switch to the next/previous window within this workspace. Window
         // ordering is fixed (not based on most recent use like the alt-tab
         // switcher) so it can match a window list shown by e.g. the

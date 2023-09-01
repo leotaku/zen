@@ -10,11 +10,11 @@ function focus_window(window) {
 }
 
 var Extension = class Extension {
-    constructor() {
-        this.settings = ExtensionUtils.getSettings();
-    }
+    constructor() {}
 
     enable() {
+        this.settings = ExtensionUtils.getSettings();
+
         this.create_signal = global.display.connect(
             "window-created",
             function (_, window) {
