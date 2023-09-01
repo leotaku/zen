@@ -39,10 +39,6 @@ const ExtensionUtils = imports.misc.extensionUtils;
 
 const Me = ExtensionUtils.getCurrentExtension();
 
-function get_focus_window() {
-    return global.display.focus_window;
-}
-
 function absolute_to_relative(x, y, rect) {
     let rel_x = (x - rect.x) / rect.width;
     let rel_y = (y - rect.y) / rect.height;
@@ -94,7 +90,7 @@ function switchWindow(next) {
         return w1.get_stable_sequence() - w2.get_stable_sequence();
     });
 
-    var current_window = get_focus_window();
+    var current_window = global.display.focus_window;
 
     // If the current window is a transient modal window, resolve it
     // to the real, non-transient window first (which is the one
