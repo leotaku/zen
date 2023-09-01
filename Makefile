@@ -15,6 +15,7 @@ INSTALLBASE = $(DESTDIR)/usr/share/gnome-shell/extensions
 PLUGIN_BASE = $(DESTDIR)/usr/lib/pop-shell/launcher
 SCRIPTS_BASE = $(DESTDIR)/usr/lib/pop-shell/scripts
 endif
+KEYBINDINGS_BASE = /usr/share/gnome-control-center/keybindings
 INSTALLNAME = $(UUID)
 
 $(info UUID is "$(UUID)")
@@ -49,6 +50,13 @@ install:
 	rm -rf $(INSTALLBASE)/$(INSTALLNAME)
 	mkdir -p $(INSTALLBASE)/$(INSTALLNAME) $(PLUGIN_BASE) $(SCRIPTS_BASE)
 	cp -r $(BUILD)/* $(INSTALLBASE)/$(INSTALLNAME)/
+
+install-keybindings:
+	cp keybindings/10-zen-direct-window-switch.xml $(KEYBINDINGS_BASE)
+	chmod 0644 $(KEYBINDINGS_BASE)/10-zen-direct-window-switch.xml
+
+uninstall-keybindings:
+	rm $(KEYBINDINGS_BASE)/10-zen-direct-window-switch.xml
 
 uninstall:
 	rm -rf $(INSTALLBASE)/$(INSTALLNAME)
