@@ -1,10 +1,10 @@
 {
-  "shell-version": ["44"],
-  "uuid": "zen@le0.gs",
-  "name": "Zen",
-  "version": 1,
-  "description": "Various tweaks for modern Gnome shell",
-  "url": "https://github.com/leotaku/zen",
-  "settings-schema": "org.gnome.shell.extensions.zen",
-  "gettext-domain": "zen@le0.gs"
+    "shell-version": ["44"],
+    "uuid": "zen@le0.gs",
+    "name": "Zen",
+    "version": 1,
+    "description": "Various tweaks for modern Gnome shell",
+    "url": "https://github.com/leotaku/zen",
+    "settings-schema": "org.gnome.shell.extensions.zen",
+    "gettext-domain": "zen@le0.gs"
 }
