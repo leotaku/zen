@@ -1,4 +1,4 @@
-/**
+/*
  * The MIT License (MIT)
  *
  * Copyright (c) 2014 Matthijs Kooijman <matthijs@stdin.nl>
@@ -22,14 +22,14 @@
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- **/
+ */
 
-/**
+/*
  * Adapted from the gnome-shell-more-keyboard-shortcuts extension
  * project by Matthijs Kooijman.
  *
  * https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts
- **/
+ */
 
 const Meta = imports.gi.Meta;
 const Main = imports.ui.main;
