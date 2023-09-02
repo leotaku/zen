@@ -3,6 +3,10 @@ const Clutter = imports.gi.Clutter;
 const ExtensionUtils = imports.misc.extensionUtils;
 
 function focusWindow(window) {
+    if (global.display.focus_window !== window) {
+        return;
+    }
+
     let rect = window.get_buffer_rect();
     let seat = Clutter.get_default_backend().get_default_seat();
 
