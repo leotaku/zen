@@ -1,6 +1,6 @@
 const ExtensionUtils = imports.misc.extensionUtils;
-
 const Me = ExtensionUtils.getCurrentExtension();
+
 const DirectWindowSwitch = Me.imports.src.direct_window_switch;
 const FocusNewWindow = Me.imports.src.focus_new_window;
 

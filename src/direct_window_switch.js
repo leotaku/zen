@@ -31,13 +31,11 @@
  * https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts
  */
 
-const Meta = imports.gi.Meta;
-const Main = imports.ui.main;
-const Shell = imports.gi.Shell;
-const Clutter = imports.gi.Clutter;
 const ExtensionUtils = imports.misc.extensionUtils;
-
 const Me = ExtensionUtils.getCurrentExtension();
+
+const { Clutter, Meta, Shell } = imports.gi;
+const { main: Main } = imports.ui;
 
 function absolute_to_relative(x, y, rect) {
     let rel_x = (x - rect.x) / rect.width;
