@@ -143,6 +143,19 @@ function switchWindow(next) {
     restorePointerForWindow(window);
 }
 
+function cleanupCustomProperties() {
+    for (const actor of global.get_window_actors()) {
+        if (actor.is_destroyed()) {
+            continue;
+        }
+
+        const win = actor.get_meta_window();
+        if (win._zen_window_coords) {
+            delete win._zen_window_coords;
+        }
+    }
+}
+
 var Extension = class Extension {
     constructor() {}
 
@@ -180,6 +193,7 @@ var Extension = class Extension {
     disable() {
         Main.wm.removeKeybinding("switch-window-next-workspace");
         Main.wm.removeKeybinding("switch-window-prev-workspace");
+        cleanupCustomProperties();
 
         this.settings = null;
     }
