@@ -27,8 +27,8 @@ var Extension = class Extension {
                     return;
                 }
 
-                let fn = () => focusWindow(window);
-                setTimeout(fn, 200);
+                let callback = () => focusWindow(window);
+                setTimeout(callback, 200);
             },
         );
     }
