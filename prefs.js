@@ -1,8 +1,7 @@
-const { Adw, Gtk, Gio } = imports.gi;
-
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
+const { Adw, Gtk, Gio } = imports.gi;
 const { gettext: _ } = ExtensionUtils;
 
 /**

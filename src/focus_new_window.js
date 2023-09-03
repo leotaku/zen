@@ -1,6 +1,6 @@
 const ExtensionUtils = imports.misc.extensionUtils;
 
-const { Meta, Clutter } = imports.gi;
+const { Clutter, Meta } = imports.gi;
 
 function focusWindow(window) {
     if (global.display.focus_window !== window) {
