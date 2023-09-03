@@ -30,14 +30,6 @@ const { main: Main } = imports.ui;
 const { restorePointerForWindow } = Me.imports.src.direct_window_switch;
 
 /**
- * @param {string} string
- * @returns {string}
- */
-function capitalize(string) {
-    return string[0].toUpperCase() + string.slice(1);
-}
-
-/**
  * @param {Meta.Workspace} workspace
  * @returns {Meta.Window}
  */
@@ -102,8 +94,9 @@ var Extension = class Extension {
     focusByWmClass(name) {
         return focusByPredicate(
             (window) =>
-                window.get_wm_class() === name ||
-                window.get_wm_class() === capitalize(name),
+                name.localeCompare(window.get_wm_class(), "en", {
+                    sensitivity: "accent",
+                }) === 0,
             null,
         );
     }
@@ -112,8 +105,9 @@ var Extension = class Extension {
         const workspace = global.workspace_manager.get_active_workspace();
         return focusByPredicate(
             (window) =>
-                window.get_wm_class() === name ||
-                window.get_wm_class() === capitalize(name),
+                name.localeCompare(window.get_wm_class(), "en", {
+                    sensitivity: "accent",
+                }) === 0,
             workspace,
         );
     }
