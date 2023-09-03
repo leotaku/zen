@@ -29,10 +29,8 @@ disable:
 	gnome-extensions disable $(UUID)
 
 restart-shell:
-	echo "Restart shell!"
-	if bash -c 'xprop -root &> /dev/null'; then \
+	if systemctl --user is-active org.gnome.Shell@x11.service --quiet; then \
 		pkill -HUP gnome-shell; \
-		sleep 3; \
 	else \
 		gnome-session-quit --logout; \
 	fi
