@@ -26,6 +26,7 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
 const { Gio, Meta } = imports.gi;
+const { main: Main } = imports.ui;
 const { restorePointerForWindow } = Me.imports.src.direct_window_switch;
 
 /**
@@ -61,6 +62,7 @@ function getWindows(workspace) {
 function focusByPredicate(predicate, workspace) {
     for (const window of getWindows(workspace)) {
         if (predicate(window)) {
+            Main.activateWindow(window);
             restorePointerForWindow(window);
             return true;
         }
