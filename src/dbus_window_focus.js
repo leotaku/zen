@@ -78,7 +78,7 @@ const ActivateWindowByTitleInterface = `
       <arg name="found" type="b" direction="out" />
     </method>
     <method name="focusByWmClassOnWorkspace">
-      <arg name="instance" type="s" direction="in" />
+      <arg name="name" type="s" direction="in" />
       <arg name="found" type="b" direction="out" />
     </method>
   </interface>
