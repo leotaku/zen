@@ -3,6 +3,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 
 const DirectWindowSwitch = Me.imports.src.direct_window_switch;
 const FocusNewWindow = Me.imports.src.focus_new_window;
+const DBusWindowFocus = Me.imports.src.dbus_window_focus;
 
 function conditionallyEnable(settings, key, extension) {
     settings.get_boolean(key) ? extension.enable() : null;
@@ -24,8 +25,10 @@ var Extension = class Extension {
      */
     enable() {
         this.settings = ExtensionUtils.getSettings();
+
         this.direct_window_switch = new DirectWindowSwitch.Extension();
         this.focus_new_window = new FocusNewWindow.Extension();
+        this.dbus_window_focus = new DBusWindowFocus.Extension();
 
         conditionallyEnable(
             this.settings,
@@ -36,6 +39,11 @@ var Extension = class Extension {
             this.settings,
             "enable-focus-new-window",
             this.focus_new_window,
+        );
+        conditionallyEnable(
+            this.settings,
+            "enable-dbus-window-focus",
+            this.dbus_window_focus,
         );
     }
 
@@ -49,9 +57,12 @@ var Extension = class Extension {
     disable() {
         this.direct_window_switch.disable();
         this.focus_new_window.disable();
+        this.dbus_window_focus.disable();
 
         this.direct_window_switch = null;
         this.focus_new_window = null;
+        this.dbus_window_focus = null;
+
         this.settings = null;
     }
 };

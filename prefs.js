@@ -99,4 +99,27 @@ function fillPreferencesWindow(window) {
             Gio.SettingsBindFlags.DEFAULT,
         );
     }
+
+    {
+        const row = new Adw.ActionRow({
+            title: _("D-Bus window focus"),
+            subtitle: _(
+                "Enables a D-Bus interface to predictably focus windows",
+            ),
+        });
+        group.add(row);
+
+        const toggle = new Gtk.Switch({
+            valign: Gtk.Align.CENTER,
+        });
+        row.add_suffix(toggle);
+        row.set_activatable_widget(toggle);
+
+        settings.bind(
+            "enable-dbus-window-focus",
+            toggle,
+            "active",
+            Gio.SettingsBindFlags.DEFAULT,
+        );
+    }
 }

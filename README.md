@@ -3,7 +3,8 @@
 ## Provenance
 
 The "Direct Window Switch" functionality has been adapted from Matthijs Kooijman's MIT licensed [gnome-shell-more-keyboard-shortcuts](https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts) extension.
-The Makefile comes from the GPL-3.0 licensed [Pop!_OS Shell](https://github.com/pop-os/shell) project.
+The "DBus Window Focus" functionality has been adapted from Lucas Werkmeister's GPL-2.0 licensed [activate-window-by-title](https://github.com/lucaswerkmeister/activate-window-by-title) extension.
+The Makefile comes from the GPL-3.0 licensed [Pop!\_OS Shell](https://github.com/pop-os/shell) project.
 
 ## License
 
