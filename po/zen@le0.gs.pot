@@ -1,0 +1,63 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-09-03 09:40+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: prefs.js:48
+msgid "General"
+msgstr ""
+
+#: prefs.js:54
+msgid "Components"
+msgstr ""
+
+#: prefs.js:55
+msgid "Select any components you want to have enabled"
+msgstr ""
+
+#: prefs.js:61
+msgid "Direct window switch"
+msgstr ""
+
+#: prefs.js:63 schemas/org.gnome.shell.extensions.zen.gschema.xml:32
+msgid ""
+"Enables Super-TAB and Super-Shift-TAB bindings for quick window switching"
+msgstr ""
+
+#: prefs.js:84
+msgid "Focus new window"
+msgstr ""
+
+#: prefs.js:85 schemas/org.gnome.shell.extensions.zen.gschema.xml:36
+msgid "Enables automatic focusing of newly created windows"
+msgstr ""
+
+#: prefs.js:105
+msgid "D-Bus window focus"
+msgstr ""
+
+#: prefs.js:107 schemas/org.gnome.shell.extensions.zen.gschema.xml:40
+msgid "Enables a D-Bus interface to predictably focus windows"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.zen.gschema.xml:45
+msgid "Switch to the next window on the current workspace"
+msgstr ""
+
+#: schemas/org.gnome.shell.extensions.zen.gschema.xml:49
+msgid "Switch to the previous window on the current workspace"
+msgstr ""
