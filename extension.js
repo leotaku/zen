@@ -12,7 +12,7 @@ function conditionallyEnable(settings, key, extension) {
     });
 }
 
-class Extension {
+var Extension = class Extension {
     constructor() {}
 
     /**
@@ -54,7 +54,7 @@ class Extension {
         this.focus_new_window = null;
         this.settings = null;
     }
-}
+};
 
 /**
  * This function is called once when your extension is loaded, not enabled. This
