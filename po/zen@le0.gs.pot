@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-03 13:35+0200\n"
+"POT-Creation-Date: 2023-09-04 13:31+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,36 +21,36 @@ msgstr ""
 msgid "General"
 msgstr ""
 
-#: prefs.js:53
+#: prefs.js:52
 msgid "Components"
 msgstr ""
 
-#: prefs.js:54
+#: prefs.js:53
 msgid "Select any components you want to have enabled"
 msgstr ""
 
-#: prefs.js:60
+#: prefs.js:59
 msgid "Direct window switch"
 msgstr ""
 
-#: prefs.js:62 schemas/org.gnome.shell.extensions.zen.gschema.xml:32
+#: prefs.js:61 schemas/org.gnome.shell.extensions.zen.gschema.xml:32
 msgid ""
 "Enables Super-TAB and Super-Shift-TAB bindings for quick window switching"
 msgstr ""
 
-#: prefs.js:83
+#: prefs.js:82
 msgid "Focus new window"
 msgstr ""
 
-#: prefs.js:84 schemas/org.gnome.shell.extensions.zen.gschema.xml:36
+#: prefs.js:83 schemas/org.gnome.shell.extensions.zen.gschema.xml:36
 msgid "Enables automatic focusing of newly created windows"
 msgstr ""
 
-#: prefs.js:104
+#: prefs.js:103
 msgid "D-Bus window focus"
 msgstr ""
 
-#: prefs.js:106 schemas/org.gnome.shell.extensions.zen.gschema.xml:40
+#: prefs.js:105 schemas/org.gnome.shell.extensions.zen.gschema.xml:40
 msgid "Enables a D-Bus interface to predictably focus windows"
 msgstr ""
 

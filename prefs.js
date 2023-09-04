@@ -45,7 +45,6 @@ function fillPreferencesWindow(window) {
     const prefsPage = new Adw.PreferencesPage({
         name: "general",
         title: _("General"),
-        icon_name: "dialog-information-symbolic",
     });
     window.add(prefsPage);
 
