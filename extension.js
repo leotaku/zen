@@ -6,7 +6,7 @@ const FocusNewWindow = Me.imports.src.focus_new_window;
 const DBusWindowFocus = Me.imports.src.dbus_window_focus;
 
 function conditionallyEnable(settings, key, extension) {
-    settings.get_boolean(key) ? extension.enable() : null;
+    settings.get_boolean(key) ? extension.enable() : undefined;
 
     settings.connect(`changed::${key}`, (settings, key) => {
         settings.get_boolean(key) ? extension.enable() : extension.disable();

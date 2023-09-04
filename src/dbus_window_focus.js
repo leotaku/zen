@@ -87,7 +87,10 @@ var Extension = class Extension {
     }
 
     disable() {
-        this.dbus.unexport_from_connection(Gio.DBus.session);
+        this.dbus
+            ? this.dbus.unexport_from_connection(Gio.DBus.session)
+            : undefined;
+
         this.dbus = null;
     }
 
