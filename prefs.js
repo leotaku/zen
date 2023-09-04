@@ -16,26 +16,8 @@ function init(metadata) {
 }
 
 /**
- * This function is called when the preferences window is first created to build
- * and return a GTK4 widget.
- *
- * The preferences window will be a `Adw.PreferencesWindow`, and the widget
- * returned by this function will be added to an `Adw.PreferencesPage` or
- * `Adw.PreferencesGroup` if necessary.
- *
- * @returns {Gtk.Widget} the preferences widget
- */
-function buildPrefsWidget() {
-    return new Gtk.Label({
-        label: Me.metadata.name,
-    });
-}
-
-/**
  * This function is called when the preferences window is first created to fill
  * the `Adw.PreferencesWindow`.
- *
- * If this function is defined, `buildPrefsWidget()` will NOT be called.
  *
  * @param {Adw.PreferencesWindow} window - The preferences window
  */
