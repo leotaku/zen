@@ -42,13 +42,13 @@ function getWindows(workspace) {
         workspace,
     );
 
-    // ... map windows to their parent where appropriate ...
-    return windows
-        .map((w) => {
-            return w.is_attached_dialog() ? w.get_transient_for() : w;
+    return (
+        windows
+            // ... map windows to their parent where appropriate ...
+            .map((w) => (w.is_attached_dialog() ? w.get_transient_for() : w))
             // ... and filter out skip-taskbar windows and duplicates
-        })
-        .filter((w, i, a) => !w.skip_taskbar && a.indexOf(w) === i);
+            .filter((w, i, a) => !w.skip_taskbar && a.indexOf(w) === i)
+    );
 }
 
 function focusByPredicate(predicate, workspace) {
