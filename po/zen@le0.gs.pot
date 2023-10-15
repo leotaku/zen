@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-04 20:04+0200\n"
+"POT-Creation-Date: 2023-09-19 22:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 msgid "Direct window switch"
 msgstr ""
 
-#: prefs.js:43 schemas/org.gnome.shell.extensions.zen.gschema.xml:32
+#: prefs.js:43 schemas/org.gnome.shell.extensions.zen.gschema.xml:7
 msgid ""
 "Enables Super-TAB and Super-Shift-TAB bindings for quick window switching"
 msgstr ""
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Focus new window"
 msgstr ""
 
-#: prefs.js:65 schemas/org.gnome.shell.extensions.zen.gschema.xml:36
+#: prefs.js:65 schemas/org.gnome.shell.extensions.zen.gschema.xml:11
 msgid "Enables automatic focusing of newly created windows"
 msgstr ""
 
@@ -50,14 +50,14 @@ msgstr ""
 msgid "D-Bus window focus"
 msgstr ""
 
-#: prefs.js:87 schemas/org.gnome.shell.extensions.zen.gschema.xml:40
+#: prefs.js:87 schemas/org.gnome.shell.extensions.zen.gschema.xml:15
 msgid "Enables a D-Bus interface to predictably focus windows"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.zen.gschema.xml:45
+#: schemas/org.gnome.shell.extensions.zen.gschema.xml:20
 msgid "Switch to the next window on the current workspace"
 msgstr ""
 
-#: schemas/org.gnome.shell.extensions.zen.gschema.xml:49
+#: schemas/org.gnome.shell.extensions.zen.gschema.xml:24
 msgid "Switch to the previous window on the current workspace"
 msgstr ""
