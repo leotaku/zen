@@ -23,9 +23,9 @@ export default class Extension extends BaseExtension {
     enable() {
         this.settings = this.getSettings();
 
-        this.direct_window_switch = new DirectWindowSwitch();
-        this.mouse_follows_focus = new MouseFollowsFocus();
-        this.dbus_window_focus = new DBusWindowFocus();
+        this.direct_window_switch = new DirectWindowSwitch(this.metadata);
+        this.mouse_follows_focus = new MouseFollowsFocus(this.metadata);
+        this.dbus_window_focus = new DBusWindowFocus(this.metadata);
 
         conditionallyEnable(
             this.settings,
