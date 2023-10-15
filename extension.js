@@ -1,9 +1,8 @@
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import { Extension as BaseExtension } from "resource:///org/gnome/shell/extensions/extension.js";
 
-const DirectWindowSwitch = Me.imports.src.direct_window_switch;
-const MouseFollowsFocus = Me.imports.src.mouse_follows_focus;
-const DBusWindowFocus = Me.imports.src.dbus_window_focus;
+import DirectWindowSwitch from "./src/direct_window_switch.js";
+import MouseFollowsFocus from "./src/mouse_follows_focus.js";
+import DBusWindowFocus from "./src/dbus_window_focus.js";
 
 function conditionallyEnable(settings, key, extension) {
     settings.get_boolean(key) ? extension.enable() : undefined;
@@ -13,9 +12,7 @@ function conditionallyEnable(settings, key, extension) {
     });
 }
 
-var Extension = class Extension {
-    constructor() {}
-
+export default class Extension extends BaseExtension {
     /**
      * This function is called when your extension is enabled, which could be
      * done in GNOME Extensions, when you log in or when the screen is unlocked.
@@ -24,11 +21,11 @@ var Extension = class Extension {
      * widgets, connect signals or modify GNOME Shell's behavior.
      */
     enable() {
-        this.settings = ExtensionUtils.getSettings();
+        this.settings = this.getSettings();
 
-        this.direct_window_switch = new DirectWindowSwitch.Extension();
-        this.mouse_follows_focus = new MouseFollowsFocus.Extension();
-        this.dbus_window_focus = new DBusWindowFocus.Extension();
+        this.direct_window_switch = new DirectWindowSwitch();
+        this.mouse_follows_focus = new MouseFollowsFocus();
+        this.dbus_window_focus = new DBusWindowFocus();
 
         conditionallyEnable(
             this.settings,
@@ -65,31 +62,4 @@ var Extension = class Extension {
 
         this.settings = null;
     }
-};
-
-/**
- * This function is called once when your extension is loaded, not enabled. This
- * is a good time to setup translations or anything else you only do once.
- *
- * You MUST NOT make any changes to GNOME Shell, connect any signals or add any
- * MainLoop sources here.
- *
- * @typedef ExtensionMeta
- * @type {object}
- * @property {object} metadata - the metadata.json file, parsed as JSON
- * @property {string} uuid - the extension UUID
- * @property {number} type - the extension type; `1` for system, `2` for user
- * @property {Gio.File} dir - the extension directory
- * @property {string} path - the extension directory path
- * @property {string} error - an error message or an empty string if no error
- * @property {boolean} hasPrefs - whether the extension has a preferences dialog
- * @property {boolean} hasUpdate - whether the extension has a pending update
- * @property {boolean} canChange - whether the extension can be enabled/disabled
- * @property {string[]} sessionModes - a list of supported session modes
- *
- * @param {ExtensionMeta} meta - An extension meta object
- * @returns {object} an object with enable() and disable() methods
- */
-function init() {
-    return new Extension();
 }

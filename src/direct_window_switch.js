@@ -31,12 +31,14 @@
  * https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts
  */
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import Clutter from "gi://Clutter";
+import Meta from "gi://Meta";
+import Shell from "gi://Shell";
 
-const { Clutter, Meta, Shell } = imports.gi;
-const { main: Main } = imports.ui;
-const { PointerManager } = Me.imports.src.pointer_management;
+import * as Main from "resource:///org/gnome/shell/ui/main.js";
+
+import { Extension as BaseExtension } from "resource:///org/gnome/shell/extensions/extension.js";
+import { PointerManager } from "./pointer_management.js";
 
 function mapTransientToParent(window) {
     return window.is_attached_dialog() ? window.get_transient_for() : window;
@@ -83,11 +85,9 @@ function switchWindow(pointerManager, next) {
     }
 }
 
-var Extension = class Extension {
-    constructor() {}
-
+export default class Extension extends BaseExtension {
     enable() {
-        this.settings = ExtensionUtils.getSettings();
+        this.settings = this.getSettings();
         this.pointer_manager = PointerManager.new("focus");
 
         Main.wm.addKeybinding(
@@ -123,7 +123,7 @@ var Extension = class Extension {
 
         this.settings = null;
     }
-};
+}
 
 function init() {
     return new Extension();

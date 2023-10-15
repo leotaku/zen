@@ -1,11 +1,10 @@
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import Clutter from "gi://Clutter";
+import Meta from "gi://Meta";
 
-const { Clutter, Meta } = imports.gi;
-const { getPointerWatcher } = imports.ui.pointerWatcher;
-const { SourceManager } = Me.imports.src.source_management;
-const { hasPointerActually, PointerManager } =
-    Me.imports.src.pointer_management;
+import { Extension as BaseExtension } from "resource:///org/gnome/shell/extensions/extension.js";
+import { getPointerWatcher } from "resource:///org/gnome/shell/ui/pointerWatcher.js";
+import { hasPointerActually, PointerManager } from "./pointer_management.js";
+import { SourceManager } from "./source_management.js";
 
 function connectToWindow(sourceManager, pointerManager, window) {
     if (window.get_window_type() !== Meta.WindowType.NORMAL) {
@@ -31,9 +30,7 @@ function connectToWindow(sourceManager, pointerManager, window) {
     });
 }
 
-var Extension = class Extension {
-    constructor() {}
-
+export default class Extension extends BaseExtension {
     enable() {
         this.pointer_manager = PointerManager.new("mouse");
         this.source_manager = new SourceManager();
@@ -78,7 +75,7 @@ var Extension = class Extension {
         this.signal_manager = null;
         this.pointer_watcher = null;
     }
-};
+}
 
 function init() {
     return new Extension();

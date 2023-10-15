@@ -22,12 +22,13 @@
  * https://github.com/lucaswerkmeister/activate-window-by-title
  */
 
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import Gio from "gi://Gio";
+import Meta from "gi://Meta";
 
-const { Gio, Meta } = imports.gi;
-const { main: Main } = imports.ui;
-const { PointerManager } = Me.imports.src.pointer_management;
+import * as Main from "resource:///org/gnome/shell/ui/main.js";
+
+import { Extension as BaseExtension } from "resource:///org/gnome/shell/extensions/extension.js";
+import { PointerManager } from "./pointer_management.js";
 
 function getWindows(workspace) {
     // We ignore skip-taskbar windows in switchers, but if they are attached
@@ -74,7 +75,7 @@ const ActivateWindowByTitleInterface = `
 </node>
 `;
 
-var Extension = class Extension {
+export default class Extension extends BaseExtension {
     enable() {
         this.dbus = Gio.DBusExportedObject.wrapJSObject(
             ActivateWindowByTitleInterface,
@@ -111,7 +112,7 @@ var Extension = class Extension {
             workspace,
         );
     }
-};
+}
 
 function init() {
     return new Extension();

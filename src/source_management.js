@@ -1,4 +1,4 @@
-var SourceManager = class SourceManager {
+export class SourceManager {
     constructor() {
         this.object_signal_pairs = [];
         this.timeouts = new Set();

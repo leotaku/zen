@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-19 02:41+0200\n"
+"POT-Creation-Date: 2023-11-04 12:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,40 +17,40 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: prefs.js:29
+#: prefs.js:22
 msgid "General"
 msgstr ""
 
-#: prefs.js:34
+#: prefs.js:27
 msgid "Components"
 msgstr ""
 
-#: prefs.js:35
+#: prefs.js:28
 msgid "Select any components you want to have enabled"
 msgstr ""
 
-#: prefs.js:41
+#: prefs.js:34
 msgid "Direct window switch"
 msgstr ""
 
-#: prefs.js:43 schemas/org.gnome.shell.extensions.zen.gschema.xml:7
+#: prefs.js:36 schemas/org.gnome.shell.extensions.zen.gschema.xml:7
 msgid ""
 "Enables Super-TAB and Super-Shift-TAB bindings for quick window switching"
 msgstr ""
 
-#: prefs.js:64
+#: prefs.js:57
 msgid "Mouse follows focus"
 msgstr ""
 
-#: prefs.js:66 schemas/org.gnome.shell.extensions.zen.gschema.xml:11
+#: prefs.js:59 schemas/org.gnome.shell.extensions.zen.gschema.xml:11
 msgid "Enables automatic teleporting of cursor to newly focused windows"
 msgstr ""
 
-#: prefs.js:87
+#: prefs.js:80
 msgid "D-Bus window focus"
 msgstr ""
 
-#: prefs.js:89 schemas/org.gnome.shell.extensions.zen.gschema.xml:15
+#: prefs.js:82 schemas/org.gnome.shell.extensions.zen.gschema.xml:15
 msgid "Enables a D-Bus interface to predictably focus windows"
 msgstr ""
 

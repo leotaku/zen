@@ -1,4 +1,5 @@
-const { Clutter, Meta } = imports.gi;
+import Clutter from "gi://Clutter";
+import Meta from "gi://Meta";
 
 function absolute_to_relative(x, y, rect) {
     const rel_x = (x - rect.x) / rect.width;
@@ -14,7 +15,7 @@ function relative_to_absolute(x, y, rect) {
     return [abs_x, abs_y];
 }
 
-function hasPointerActually(window) {
+export function hasPointerActually(window) {
     const [x, y, _] = global.get_pointer();
     const pointer = new Meta.Rectangle({ x, y });
     const rect = window.get_frame_rect();
@@ -22,7 +23,7 @@ function hasPointerActually(window) {
     return rect.contains_rect(pointer);
 }
 
-var PointerManager = class PointerManager {
+export class PointerManager {
     static singleton;
 
     constructor(name, pointer_coordinates) {
@@ -80,4 +81,4 @@ var PointerManager = class PointerManager {
 
         seat.warp_pointer(x, y);
     }
-};
+}
