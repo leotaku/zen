@@ -1,7 +1,7 @@
 import Clutter from "gi://Clutter";
 import Meta from "gi://Meta";
 
-import { Extension as BaseExtension } from "resource:///org/gnome/shell/extensions/extension.js";
+import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 import { getPointerWatcher } from "resource:///org/gnome/shell/ui/pointerWatcher.js";
 import { hasPointerActually, PointerManager } from "./pointer_management.js";
 import { SourceManager } from "./source_management.js";
@@ -30,7 +30,7 @@ function connectToWindow(sourceManager, pointerManager, window) {
     });
 }
 
-export default class Extension extends BaseExtension {
+export default class MouseFollowsFocusExtension extends Extension {
     enable() {
         this.pointer_manager = PointerManager.new("mouse");
         this.source_manager = new SourceManager();

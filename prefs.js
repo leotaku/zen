@@ -3,11 +3,11 @@ import Gtk from "gi://Gtk";
 import Gio from "gi://Gio";
 
 import {
-    ExtensionPreferences as BaseExtensionPreferences,
+    ExtensionPreferences,
     gettext as _,
 } from "resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js";
 
-export default class ExtensionPreferences extends BaseExtensionPreferences {
+export default class ZenExtensionPreferences extends ExtensionPreferences {
     /**
      * This function is called when the preferences window is first created to fill
      * the `Adw.PreferencesWindow`.

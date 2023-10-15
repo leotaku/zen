@@ -1,8 +1,8 @@
-import { Extension as BaseExtension } from "resource:///org/gnome/shell/extensions/extension.js";
+import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 
-import DirectWindowSwitch from "./src/direct_window_switch.js";
-import MouseFollowsFocus from "./src/mouse_follows_focus.js";
-import DBusWindowFocus from "./src/dbus_window_focus.js";
+import DirectWindowSwitchExtension from "./src/direct_window_switch.js";
+import MouseFollowsFocusExtension from "./src/mouse_follows_focus.js";
+import DBusWindowFocusExtension from "./src/dbus_window_focus.js";
 
 function conditionallyEnable(settings, key, extension) {
     settings.get_boolean(key) ? extension.enable() : undefined;
@@ -12,7 +12,7 @@ function conditionallyEnable(settings, key, extension) {
     });
 }
 
-export default class Extension extends BaseExtension {
+export default class ZenExtension extends Extension {
     /**
      * This class is constructed once when your extension is loaded, not
      * enabled. This is a good time to setup translations or anything else you
@@ -37,9 +37,13 @@ export default class Extension extends BaseExtension {
     enable() {
         this.settings = this.getSettings();
 
-        this.direct_window_switch = new DirectWindowSwitch(this.metadata);
-        this.mouse_follows_focus = new MouseFollowsFocus(this.metadata);
-        this.dbus_window_focus = new DBusWindowFocus(this.metadata);
+        this.direct_window_switch = new DirectWindowSwitchExtension(
+            this.metadata,
+        );
+        this.mouse_follows_focus = new MouseFollowsFocusExtension(
+            this.metadata,
+        );
+        this.dbus_window_focus = new DBusWindowFocusExtension(this.metadata);
 
         conditionallyEnable(
             this.settings,
