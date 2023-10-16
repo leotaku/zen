@@ -14,6 +14,20 @@ function conditionallyEnable(settings, key, extension) {
 
 export default class Extension extends BaseExtension {
     /**
+     * This class is constructed once when your extension is loaded, not
+     * enabled. This is a good time to setup translations or anything else you
+     * only do once.
+     *
+     * You MUST NOT make any changes to GNOME Shell, connect any signals or add
+     * any event sources here.
+     *
+     * @param {ExtensionMeta} metadata - An extension meta object
+     */
+    constructor(metadata) {
+        super(metadata);
+    }
+
+    /**
      * This function is called when your extension is enabled, which could be
      * done in GNOME Extensions, when you log in or when the screen is unlocked.
      *
