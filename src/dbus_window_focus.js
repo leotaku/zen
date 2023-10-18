@@ -27,7 +27,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 
 const { Gio, Meta } = imports.gi;
 const { main: Main } = imports.ui;
-const { restorePointerForWindow } = Me.imports.src.direct_window_switch;
+const { PointerManager } = Me.imports.src.pointer_management;
 
 /**
  * @param {Meta.Workspace} workspace
@@ -55,7 +55,7 @@ function focusByPredicate(predicate, workspace) {
     for (const window of getWindows(workspace)) {
         if (predicate(window)) {
             Main.activateWindow(window);
-            restorePointerForWindow(window);
+            PointerManager.ephemeral("focus").restorePointer(window);
             return true;
         }
     }
