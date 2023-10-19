@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-19 22:40+0200\n"
+"POT-Creation-Date: 2023-10-19 02:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,18 +39,18 @@ msgid ""
 msgstr ""
 
 #: prefs.js:64
-msgid "Focus new window"
+msgid "Mouse follows focus"
 msgstr ""
 
-#: prefs.js:65 schemas/org.gnome.shell.extensions.zen.gschema.xml:11
-msgid "Enables automatic focusing of newly created windows"
+#: prefs.js:66 schemas/org.gnome.shell.extensions.zen.gschema.xml:11
+msgid "Enables automatic teleporting of cursor to newly focused windows"
 msgstr ""
 
-#: prefs.js:85
+#: prefs.js:87
 msgid "D-Bus window focus"
 msgstr ""
 
-#: prefs.js:87 schemas/org.gnome.shell.extensions.zen.gschema.xml:15
+#: prefs.js:89 schemas/org.gnome.shell.extensions.zen.gschema.xml:15
 msgid "Enables a D-Bus interface to predictably focus windows"
 msgstr ""
 

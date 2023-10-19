@@ -6,9 +6,9 @@
             <default>true</default>
             <summary>Enables Super-TAB and Super-Shift-TAB bindings for quick window switching</summary>
         </key>
-        <key type="b" name="enable-focus-new-window">
+        <key type="b" name="enable-mouse-follows-focus">
             <default>true</default>
-            <summary>Enables automatic focusing of newly created windows</summary>
+            <summary>Enables automatic teleporting of cursor to newly focused windows</summary>
         </key>
         <key type="b" name="enable-dbus-window-focus">
             <default>true</default>

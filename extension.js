@@ -2,7 +2,7 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
 const DirectWindowSwitch = Me.imports.src.direct_window_switch;
-const FocusNewWindow = Me.imports.src.focus_new_window;
+const MouseFollowsFocus = Me.imports.src.mouse_follows_focus;
 const DBusWindowFocus = Me.imports.src.dbus_window_focus;
 
 function conditionallyEnable(settings, key, extension) {
@@ -27,7 +27,7 @@ var Extension = class Extension {
         this.settings = ExtensionUtils.getSettings();
 
         this.direct_window_switch = new DirectWindowSwitch.Extension();
-        this.focus_new_window = new FocusNewWindow.Extension();
+        this.mouse_follows_focus = new MouseFollowsFocus.Extension();
         this.dbus_window_focus = new DBusWindowFocus.Extension();
 
         conditionallyEnable(
@@ -37,8 +37,8 @@ var Extension = class Extension {
         );
         conditionallyEnable(
             this.settings,
-            "enable-focus-new-window",
-            this.focus_new_window,
+            "enable-mouse-follows-focus",
+            this.mouse_follows_focus,
         );
         conditionallyEnable(
             this.settings,
@@ -56,11 +56,11 @@ var Extension = class Extension {
      */
     disable() {
         this.direct_window_switch.disable();
-        this.focus_new_window.disable();
+        this.mouse_follows_focus.disable();
         this.dbus_window_focus.disable();
 
         this.direct_window_switch = null;
-        this.focus_new_window = null;
+        this.mouse_follows_focus = null;
         this.dbus_window_focus = null;
 
         this.settings = null;

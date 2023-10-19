@@ -61,8 +61,10 @@ function fillPreferencesWindow(window) {
 
     {
         const row = new Adw.ActionRow({
-            title: _("Focus new window"),
-            subtitle: _("Enables automatic focusing of newly created windows"),
+            title: _("Mouse follows focus"),
+            subtitle: _(
+                "Enables automatic teleporting of cursor to newly focused windows",
+            ),
         });
         group.add(row);
 
@@ -73,7 +75,7 @@ function fillPreferencesWindow(window) {
         row.set_activatable_widget(toggle);
 
         settings.bind(
-            "enable-focus-new-window",
+            "enable-mouse-follows-focus",
             toggle,
             "active",
             Gio.SettingsBindFlags.DEFAULT,
