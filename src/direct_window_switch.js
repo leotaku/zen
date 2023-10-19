@@ -112,10 +112,6 @@ var Extension = class Extension {
         this.settings = ExtensionUtils.getSettings();
         this.pointer_manager = PointerManager.new("focus");
 
-        // Switch to the next/previous window within this workspace. Window
-        // ordering is fixed (not based on most recent use like the alt-tab
-        // switcher) so it can match a window list shown by e.g. the
-        // Frippery Bottom Panel.
         Main.wm.addKeybinding(
             "switch-window-next-workspace",
             this.settings,
