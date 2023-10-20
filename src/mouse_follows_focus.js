@@ -37,11 +37,21 @@ var Extension = class Extension {
                     }
                 }, 100);
 
+                let lastPositionChangeTime = 0;
+
                 window.connect("position-changed", (window) => {
-                    if (window.has_focus() && !hasPointerActually(window)) {
+                    let now = new Date().getTime();
+                    let debounced = now - lastPositionChangeTime < 100;
+
+                    if (
+                        window.has_focus() &&
+                        !hasPointerActually(window) &&
+                        !debounced
+                    ) {
                         clearTimeout(initialFocusAttempt);
                         this.pointer_manager.restorePointer(window);
                     }
+                    lastPositionChangeTime = now;
                 });
             },
         );
