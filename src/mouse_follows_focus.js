@@ -2,7 +2,7 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
 const { Clutter, Meta } = imports.gi;
-const { pointerWatcher: PointerWatcher } = imports.ui;
+const { getPointerWatcher } = imports.ui.pointerWatcher;
 const { hasPointerActually, PointerManager } =
     Me.imports.src.pointer_management;
 
@@ -12,17 +12,14 @@ var Extension = class Extension {
     enable() {
         this.pointer_manager = PointerManager.new("mouse");
 
-        this.pointer_watcher = PointerWatcher.getPointerWatcher().addWatch(
-            10,
-            (x, y) => {
-                let pointer = new Meta.Rectangle({ x, y });
-                let window = global.display.focus_window;
+        this.pointer_watcher = getPointerWatcher().addWatch(10, (x, y) => {
+            let pointer = new Meta.Rectangle({ x, y });
+            let window = global.display.focus_window;
 
-                if (window && window.get_buffer_rect().contains_rect(pointer)) {
-                    this.pointer_manager.storePosition(window, x, y);
-                }
-            },
-        );
+            if (window && window.get_buffer_rect().contains_rect(pointer)) {
+                this.pointer_manager.storePosition(window, x, y);
+            }
+        });
 
         this.create_signal = global.display.connect(
             "window-created",
