@@ -14,9 +14,9 @@ po/$(UUID).pot: $(js) $(schemas)
 
 .PHONY: develop install uninstall enable disable listen restart-shell
 
-develop: $(PACKFILE) install restart-shell enable
+develop: install restart-shell
 
-install:
+install: $(PACKFILE)
 	gnome-extensions install $(PACKFILE) --force
 
 uninstall:
