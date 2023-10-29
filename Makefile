@@ -4,7 +4,7 @@ PACKFILE = $(UUID).shell-extension.zip
 other = metadata.json
 js = extension.js prefs.js src/*
 schemas = schemas/*
-pot = po/*
+pot = po/$(UUID).pot po/*
 
 $(PACKFILE): $(other) $(js) $(schemas) $(pot)
 	gnome-extensions pack . --extra-source=src --force
