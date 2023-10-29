@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<KeyListEntries group="system" schema="org.gnome.shell.extensions.zen" name="Move, resize, and swap windows">
-  <KeyListEntry
-      name="switch-window-next-workspace"
-      description="Switch to the next window on the current workspace"/>
-  <KeyListEntry
-      name="switch-window-prev-workspace"
-      description="Switch to the previous window on the current workspace"/>
-</KeyListEntries>

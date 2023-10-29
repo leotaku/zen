@@ -37,13 +37,3 @@ restart-shell:
 
 listen:
 	journalctl -o cat -n 0 -f "$$(which gnome-shell)" | grep -v warning
-
-KEYBINDINGS_BASE = /usr/share/gnome-control-center/keybindings
-
-.PHONY: install-keybindings uninstall-keybindings
-
-install-keybindings: keybindings/10-zen-*.xml
-	install -m 0644 -o root -g root -t $(KEYBINDINGS_BASE) $^
-
-uninstall-keybindings: $(KEYBINDINGS_BASE)/10-zen-*.xml
-	rm $^
