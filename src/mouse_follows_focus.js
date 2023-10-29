@@ -31,13 +31,15 @@ var Extension = class Extension {
                     return;
                 }
 
+                let lastPositionChangeTime = 0;
+                let pointerManager = this.pointer_manager;
+
                 let initialFocusAttempt = setTimeout(() => {
                     if (window.has_focus() && !hasPointerActually(window)) {
-                        this.pointer_manager.restorePointer(window);
+                        pointerManager.restorePointer(window);
                     }
                 }, 100);
 
-                let lastPositionChangeTime = 0;
 
                 window.connect("position-changed", (window) => {
                     let now = new Date().getTime();
@@ -49,7 +51,7 @@ var Extension = class Extension {
                         !debounced
                     ) {
                         clearTimeout(initialFocusAttempt);
-                        this.pointer_manager.restorePointer(window);
+                        pointerManager.restorePointer(window);
                     }
                     lastPositionChangeTime = now;
                 });
