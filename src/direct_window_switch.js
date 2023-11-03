@@ -39,8 +39,7 @@ const { main: Main } = imports.ui;
 const { PointerManager } = Me.imports.src.pointer_management;
 
 function mapTransientToParent(window) {
-    let ts = window.get_transient_for();
-    return ts ? mapTransientToParent(ts) : window;
+    return window.is_attached_dialog() ? window.get_transient_for() : window;
 }
 
 function switchWindow(pointerManager, next) {
