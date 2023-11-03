@@ -7,6 +7,30 @@ const { SignalManager } = Me.imports.src.signal_management;
 const { hasPointerActually, PointerManager } =
     Me.imports.src.pointer_management;
 
+function connectToWindow(signalManager, pointerManager, window) {
+    if (window.get_window_type() !== Meta.WindowType.NORMAL) {
+        return;
+    }
+
+    let lastPositionChangeTime = 0;
+    let initialFocusAttempt = setTimeout(() => {
+        if (window.has_focus() && !hasPointerActually(window)) {
+            pointerManager.restorePointer(window);
+        }
+    }, 100);
+
+    signalManager.connect(window, "position-changed", (window) => {
+        let now = new Date().getTime();
+        let debounced = now - lastPositionChangeTime < 100;
+
+        if (window.has_focus() && !hasPointerActually(window) && !debounced) {
+            clearTimeout(initialFocusAttempt);
+            pointerManager.restorePointer(window);
+        }
+        lastPositionChangeTime = now;
+    });
+}
+
 var Extension = class Extension {
     constructor() {}
 
@@ -26,40 +50,23 @@ var Extension = class Extension {
         this.signal_manager.connect(
             global.display,
             "window-created",
-            (display, window) => {
-                if (window.get_window_type() !== Meta.WindowType.NORMAL) {
-                    return;
-                }
-
-                let lastPositionChangeTime = 0;
-                let pointerManager = this.pointer_manager;
-
-                let initialFocusAttempt = setTimeout(() => {
-                    if (window.has_focus() && !hasPointerActually(window)) {
-                        pointerManager.restorePointer(window);
-                    }
-                }, 100);
-
-                this.signal_manager.connect(
+            (display, window) =>
+                connectToWindow(
+                    this.signal_manager,
+                    this.pointer_manager,
                     window,
-                    "position-changed",
-                    (window) => {
-                        let now = new Date().getTime();
-                        let debounced = now - lastPositionChangeTime < 100;
-
-                        if (
-                            window.has_focus() &&
-                            !hasPointerActually(window) &&
-                            !debounced
-                        ) {
-                            clearTimeout(initialFocusAttempt);
-                            pointerManager.restorePointer(window);
-                        }
-                        lastPositionChangeTime = now;
-                    },
-                );
-            },
+                ),
         );
+
+        global.display
+            .get_tab_list(Meta.TabList.NORMAL_ALL, null)
+            .forEach((window) =>
+                connectToWindow(
+                    this.signal_manager,
+                    this.pointer_manager,
+                    window,
+                ),
+            );
     }
 
     disable() {
