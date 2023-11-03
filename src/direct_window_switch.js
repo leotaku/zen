@@ -38,71 +38,50 @@ const { Clutter, Meta, Shell } = imports.gi;
 const { main: Main } = imports.ui;
 const { PointerManager } = Me.imports.src.pointer_management;
 
-function switchWindow(pointer_manager, next) {
-    let workspace = (
-        global.screen || global.workspace_manager
-    ).get_active_workspace();
-    let windows = workspace.list_windows();
+function mapTransientToParent(window) {
+    let ts = window.get_transient_for();
+    return ts ? mapTransientToParent(ts) : window;
+}
 
-    // Generate a stable ordering for the window list (based on the
-    // Frippery Bottom Panel extension)
+function switchWindow(pointerManager, next) {
+    let windows = global.workspace_manager
+        .get_active_workspace()
+        .list_windows();
+
+    // Generate a stable ordering for the window list.
     windows.sort(function (w1, w2) {
         return w1.get_stable_sequence() - w2.get_stable_sequence();
     });
 
-    var current_window = global.display.focus_window;
+    // If the current window is a transient for a window, resolve it
+    // to the real, non-transient window first (that is the one that
+    // is shown in the taskbar).
+    let current = mapTransientToParent(global.display.focus_window);
+    let index = windows.findIndex((it) => it == current);
 
-    // If the current window is a transient modal window, resolve it
-    // to the real, non-transient window first (which is the one
-    // that is shown in the taskbar).
-    while (
-        current_window &&
-        current_window.get_window_type() == Meta.WindowType.MODAL_DIALOG &&
-        current_window.get_transient_for()
-    )
-        current_window = current_window.get_transient_for();
+    // Generate a list of all non-focused windows on this workspace
+    // starting with the window after the currently focused window.
+    let possibleTargets = windows
+        .slice(index + 1)
+        .concat(windows.slice(0, index));
 
-    // Find out the index of the current window
-    let current_idx = -1;
-    for (let i = 0; i < windows.length; ++i) {
-        if (windows[i] == current_window) {
-            current_idx = i;
-            break;
-        }
+    // If previous window was requested, reverse the sequence.
+    if (!next) {
+        possibleTargets.reverse();
     }
 
-    // Figure out what window to focus
-    let target_idx;
-    if (current_idx < 0) {
-        // No window was focused, just focus the first in the list
-        target_idx = 0;
-    } else {
-        // Focus the next/previous window that does not have
-        // skip_taskbar and is not a modal window. Note that focusing a
-        // window that has a modal transient will focus the modal
-        // instead, but the code above resolves that back to the real
-        // window, so everything still works as you'd expect.
-        target_idx = current_idx;
-        do {
-            target_idx += next ? 1 : -1;
-            // Modulo doesn't handle -1 here, so make sure we are
-            // positive first
-            target_idx += windows.length;
-            target_idx %= windows.length;
-            // Don't keep looping if this is the only focusable window
-            if (target_idx == current_idx) break;
-        } while (
-            windows[target_idx].skip_taskbar ||
-            windows[target_idx].get_window_type() ==
-                Meta.WindowType.MODAL_DIALOG
-        );
+    // Find the next window that does not have skip_taskbar and is
+    // also not a transient window.
+    let target = possibleTargets.find(
+        (it) => !it.skip_taskbar && !it.get_transient_for(),
+    );
+
+    // If a suitable window was found, focus it.
+    if (target) {
+        pointerManager.storePointer(current);
+        Main.activateWindow(target);
+        pointerManager.restorePointer(target);
     }
-
-    let window = windows[target_idx];
-
-    pointer_manager.storePointer(current_window);
-    Main.activateWindow(window);
-    pointer_manager.restorePointer(window);
 }
 
 var Extension = class Extension {
