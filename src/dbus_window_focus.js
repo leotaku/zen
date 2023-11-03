@@ -48,13 +48,14 @@ function getWindows(workspace) {
 }
 
 function focusByPredicate(predicate, workspace) {
-    for (const window of getWindows(workspace)) {
-        if (predicate(window)) {
-            Main.activateWindow(window);
-            PointerManager.ephemeral("focus").restorePointer(window);
-            return true;
-        }
+    let window = getWindows(workspace).find((it) => predicate(it));
+
+    if (window) {
+        Main.activateWindow(window);
+        PointerManager.ephemeral("focus").restorePointer(window);
+        return true;
     }
+
     return false;
 }
 
