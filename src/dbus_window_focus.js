@@ -29,10 +29,6 @@ const { Gio, Meta } = imports.gi;
 const { main: Main } = imports.ui;
 const { PointerManager } = Me.imports.src.pointer_management;
 
-/**
- * @param {Meta.Workspace} workspace
- * @returns {Meta.Window}
- */
 function getWindows(workspace) {
     // We ignore skip-taskbar windows in switchers, but if they are attached
     // to their parent, their position in the MRU list may be more appropriate
