@@ -1,5 +1,6 @@
 import Clutter from "gi://Clutter";
 import Meta from "gi://Meta";
+import Mtk from "gi://Mtk";
 
 import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
 import { getPointerWatcher } from "resource:///org/gnome/shell/ui/pointerWatcher.js";
@@ -36,7 +37,7 @@ export default class MouseFollowsFocusExtension extends Extension {
         this.source_manager = new SourceManager();
 
         this.pointer_watcher = getPointerWatcher().addWatch(10, (x, y) => {
-            const pointer = new Meta.Rectangle({ x, y });
+            const pointer = new Mtk.Rectangle({ x, y });
             const window = global.display.focus_window;
 
             if (window && window.get_buffer_rect().contains_rect(pointer)) {

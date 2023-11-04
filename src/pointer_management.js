@@ -1,5 +1,6 @@
 import Clutter from "gi://Clutter";
 import Meta from "gi://Meta";
+import Mtk from "gi://Mtk";
 
 function absolute_to_relative(x, y, rect) {
     const rel_x = (x - rect.x) / rect.width;
@@ -17,7 +18,7 @@ function relative_to_absolute(x, y, rect) {
 
 export function hasPointerActually(window) {
     const [x, y, _] = global.get_pointer();
-    const pointer = new Meta.Rectangle({ x, y });
+    const pointer = new Mtk.Rectangle({ x, y });
     const rect = window.get_frame_rect();
 
     return rect.contains_rect(pointer);
