@@ -33,7 +33,7 @@ function getWindows(workspace) {
     // We ignore skip-taskbar windows in switchers, but if they are attached
     // to their parent, their position in the MRU list may be more appropriate
     // than the parent; so start with the complete list ...
-    let windows = global.display.get_tab_list(
+    const windows = global.display.get_tab_list(
         Meta.TabList.NORMAL_ALL,
         workspace,
     );
@@ -48,7 +48,7 @@ function getWindows(workspace) {
 }
 
 function focusByPredicate(predicate, workspace) {
-    let window = getWindows(workspace).find((it) => predicate(it));
+    const window = getWindows(workspace).find((it) => predicate(it));
 
     if (window) {
         Main.activateWindow(window);

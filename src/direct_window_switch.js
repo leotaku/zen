@@ -43,7 +43,7 @@ function mapTransientToParent(window) {
 }
 
 function switchWindow(pointerManager, next) {
-    let windows = global.workspace_manager
+    const windows = global.workspace_manager
         .get_active_workspace()
         .list_windows();
 
@@ -55,12 +55,12 @@ function switchWindow(pointerManager, next) {
     // If the current window is a transient for a window, resolve it
     // to the real, non-transient window first (that is the one that
     // is shown in the taskbar).
-    let current = mapTransientToParent(global.display.focus_window);
-    let index = windows.findIndex((it) => it == current);
+    const current = mapTransientToParent(global.display.focus_window);
+    const index = windows.findIndex((it) => it == current);
 
     // Generate a list of all non-focused windows on this workspace
     // starting with the window after the currently focused window.
-    let possibleTargets = windows
+    const possibleTargets = windows
         .slice(index + 1)
         .concat(windows.slice(0, index));
 
@@ -71,7 +71,7 @@ function switchWindow(pointerManager, next) {
 
     // Find the next window that does not have skip_taskbar and is
     // also not a transient window.
-    let target = possibleTargets.find(
+    const target = possibleTargets.find(
         (it) => !it.skip_taskbar && !it.get_transient_for(),
     );
 

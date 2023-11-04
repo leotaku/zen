@@ -13,15 +13,15 @@ function connectToWindow(signalManager, pointerManager, window) {
     }
 
     let lastPositionChangeTime = 0;
-    let initialFocusAttempt = setTimeout(() => {
+    const initialFocusAttempt = setTimeout(() => {
         if (window.has_focus() && !hasPointerActually(window)) {
             pointerManager.restorePointer(window);
         }
     }, 100);
 
     signalManager.connect(window, "position-changed", (window) => {
-        let now = new Date().getTime();
-        let debounced = now - lastPositionChangeTime < 100;
+        const now = new Date().getTime();
+        const debounced = now - lastPositionChangeTime < 100;
 
         if (window.has_focus() && !hasPointerActually(window) && !debounced) {
             clearTimeout(initialFocusAttempt);
@@ -39,8 +39,8 @@ var Extension = class Extension {
         this.signal_manager = new SignalManager();
 
         this.pointer_watcher = getPointerWatcher().addWatch(10, (x, y) => {
-            let pointer = new Meta.Rectangle({ x, y });
-            let window = global.display.focus_window;
+            const pointer = new Meta.Rectangle({ x, y });
+            const window = global.display.focus_window;
 
             if (window && window.get_buffer_rect().contains_rect(pointer)) {
                 this.pointer_manager.storePosition(window, x, y);

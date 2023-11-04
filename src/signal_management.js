@@ -4,7 +4,7 @@ var SignalManager = class SignalManager {
     }
 
     connect(object, name, callback) {
-        let signal = object.connect(name, callback);
+        const signal = object.connect(name, callback);
         this.object_signal_pairs.push([object, signal]);
     }
 
