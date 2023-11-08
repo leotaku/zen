@@ -70,9 +70,9 @@ function switchWindow(pointerManager, next) {
     }
 
     // Find the next window that does not have skip_taskbar and is
-    // also not a transient window.
+    // also not an attached dialog window.
     const target = possibleTargets.find(
-        (it) => !it.skip_taskbar && !it.get_transient_for(),
+        (it) => !it.skip_taskbar && !it.is_attached_dialog(),
     );
 
     // If a suitable window was found, focus it.
