@@ -3,28 +3,28 @@ const Me = ExtensionUtils.getCurrentExtension();
 
 const { Clutter, Meta } = imports.gi;
 const { getPointerWatcher } = imports.ui.pointerWatcher;
-const { SignalManager } = Me.imports.src.signal_management;
+const { SourceManager } = Me.imports.src.source_management;
 const { hasPointerActually, PointerManager } =
     Me.imports.src.pointer_management;
 
-function connectToWindow(signalManager, pointerManager, window) {
+function connectToWindow(sourceManager, pointerManager, window) {
     if (window.get_window_type() !== Meta.WindowType.NORMAL) {
         return;
     }
 
     let lastPositionChangeTime = 0;
-    const initialFocusAttempt = setTimeout(() => {
+    const initialFocusAttempt = sourceManager.setTimeout(() => {
         if (window.has_focus() && !hasPointerActually(window)) {
             pointerManager.restorePointer(window);
         }
     }, 100);
 
-    signalManager.connect(window, "position-changed", (window) => {
+    sourceManager.connect(window, "position-changed", (window) => {
         const now = new Date().getTime();
         const debounced = now - lastPositionChangeTime < 100;
 
         if (window.has_focus() && !hasPointerActually(window) && !debounced) {
-            clearTimeout(initialFocusAttempt);
+            sourceManager.clearTimeout(initialFocusAttempt);
             pointerManager.restorePointer(window);
         }
         lastPositionChangeTime = now;
@@ -36,7 +36,7 @@ var Extension = class Extension {
 
     enable() {
         this.pointer_manager = PointerManager.new("mouse");
-        this.signal_manager = new SignalManager();
+        this.source_manager = new SourceManager();
 
         this.pointer_watcher = getPointerWatcher().addWatch(10, (x, y) => {
             const pointer = new Meta.Rectangle({ x, y });
@@ -47,12 +47,12 @@ var Extension = class Extension {
             }
         });
 
-        this.signal_manager.connect(
+        this.source_manager.connect(
             global.display,
             "window-created",
             (display, window) =>
                 connectToWindow(
-                    this.signal_manager,
+                    this.source_manager,
                     this.pointer_manager,
                     window,
                 ),
@@ -62,7 +62,7 @@ var Extension = class Extension {
             .get_tab_list(Meta.TabList.NORMAL_ALL, null)
             .forEach((window) =>
                 connectToWindow(
-                    this.signal_manager,
+                    this.source_manager,
                     this.pointer_manager,
                     window,
                 ),
@@ -71,7 +71,7 @@ var Extension = class Extension {
 
     disable() {
         this.pointer_manager ? this.pointer_manager.destroy() : undefined;
-        this.signal_manager ? this.signal_manager.destroy() : undefined;
+        this.source_manager ? this.source_manager.destroy() : undefined;
         this.pointer_watcher ? this.pointer_watcher.remove() : undefined;
 
         this.pointer_manager = null;
