@@ -113,7 +113,3 @@ export default class DBusWindowFocusExtension extends Extension {
         );
     }
 }
-
-function init() {
-    return new Extension();
-}

@@ -124,7 +124,3 @@ export default class DirectWindowSwitchExtension extends Extension {
         this.settings = null;
     }
 }
-
-function init() {
-    return new Extension();
-}

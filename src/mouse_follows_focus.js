@@ -77,7 +77,3 @@ export default class MouseFollowsFocusExtension extends Extension {
         this.pointer_watcher = null;
     }
 }
-
-function init() {
-    return new Extension();
-}
