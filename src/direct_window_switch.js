@@ -118,7 +118,7 @@ var Extension = class Extension {
         Main.wm.removeKeybinding("switch-window-next-workspace");
         Main.wm.removeKeybinding("switch-window-prev-workspace");
 
-        this.pointer_manager ? this.pointer_manager.destroy() : undefined;
+        this.pointer_manager?.destroy();
         this.pointer_manager = null;
 
         this.settings = null;

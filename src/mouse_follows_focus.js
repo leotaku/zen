@@ -70,9 +70,9 @@ var Extension = class Extension {
     }
 
     disable() {
-        this.pointer_manager ? this.pointer_manager.destroy() : undefined;
-        this.source_manager ? this.source_manager.destroy() : undefined;
-        this.pointer_watcher ? this.pointer_watcher.remove() : undefined;
+        this.pointer_manager?.destroy();
+        this.source_manager?.destroy();
+        this.pointer_watcher?.remove();
 
         this.pointer_manager = null;
         this.signal_manager = null;
