@@ -38,12 +38,12 @@ export default class ZenExtension extends Extension {
         this.settings = this.getSettings();
 
         this.direct_window_switch = new DirectWindowSwitchExtension(
-            this.metadata,
+            this.settings,
         );
         this.mouse_follows_focus = new MouseFollowsFocusExtension(
-            this.metadata,
+            this.settings,
         );
-        this.dbus_window_focus = new DBusWindowFocusExtension(this.metadata);
+        this.dbus_window_focus = new DBusWindowFocusExtension(this.settings);
 
         conditionallyEnable(
             this.settings,

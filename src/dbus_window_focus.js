@@ -27,7 +27,7 @@ import Meta from "gi://Meta";
 
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 
-import { Extension } from "resource:///org/gnome/shell/extensions/extension.js";
+import { SubExtension } from "./sub_extension.js";
 import { PointerManager } from "./pointer_management.js";
 
 function getWindows(workspace) {
@@ -75,7 +75,7 @@ const ActivateWindowByTitleInterface = `
 </node>
 `;
 
-export default class DBusWindowFocusExtension extends Extension {
+export default class DBusWindowFocusExtension extends SubExtension {
     enable() {
         this.dbus = Gio.DBusExportedObject.wrapJSObject(
             ActivateWindowByTitleInterface,
