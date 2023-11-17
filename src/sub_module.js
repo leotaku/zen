@@ -1,4 +1,4 @@
-class SubExtensionBase {
+class SubmoduleBase {
     #settings;
 
     constructor(settings) {
@@ -10,7 +10,7 @@ class SubExtensionBase {
     }
 }
 
-export class SubExtension extends SubExtensionBase {
+export class Submodule extends SubmoduleBase {
     enable() {}
     disable() {}
 }

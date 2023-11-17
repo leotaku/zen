@@ -37,7 +37,7 @@ import Shell from "gi://Shell";
 
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 
-import { SubExtension } from "./sub_extension.js";
+import { Submodule } from "./sub_module.js";
 import { PointerManager } from "./pointer_management.js";
 
 function mapTransientToParent(window) {
@@ -85,7 +85,7 @@ function switchWindow(pointerManager, next) {
     }
 }
 
-export default class DirectWindowSwitchExtension extends SubExtension {
+export default class DirectWindowSwitchModule extends Submodule {
     enable() {
         this.settings = this.getSettings();
         this.pointer_manager = PointerManager.new("focus");
