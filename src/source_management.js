@@ -29,4 +29,4 @@ export class SourceManager {
             clearTimeout(timeout);
         }
     }
-};
+}

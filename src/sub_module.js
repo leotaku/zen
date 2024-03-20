@@ -14,4 +14,3 @@ export class Submodule extends SubmoduleBase {
     enable() {}
     disable() {}
 }
-
