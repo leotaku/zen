@@ -38,7 +38,7 @@ import Shell from "gi://Shell";
 import * as Main from "resource:///org/gnome/shell/ui/main.js";
 
 import { Submodule } from "./sub_module.js";
-import { PointerManager } from "./pointer_management.js";
+import { hasPointerActually, PointerManager } from "./pointer_management.js";
 
 function mapTransientToParent(window) {
     return window.is_attached_dialog() ? window.get_transient_for() : window;
@@ -77,9 +77,14 @@ function switchWindow(pointerManager, next) {
         (it) => !it.skip_taskbar && !it.is_attached_dialog(),
     );
 
+    // If the pointer is within the bounds of the current window,
+    // update pointer coordinates.
+    if (hasPointerActually(current)) {
+        pointerManager.storePointer(current);
+    }
+
     // If a suitable window was found, focus it.
     if (target) {
-        pointerManager.storePointer(current);
         Main.activateWindow(target);
         pointerManager.restorePointer(target);
     }
