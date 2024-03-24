@@ -2,7 +2,7 @@
     "uuid": "zen@le0.gs",
     "name": "Zen",
     "description": "Various tweaks for a more predictable Gnome shell experience",
-    "shell-version": ["45"],
+    "shell-version": ["45", "46"],
     "url": "https://github.com/leotaku/zen",
     "gettext-domain": "zen@le0.gs",
     "settings-schema": "org.gnome.shell.extensions.zen"
