@@ -9,9 +9,9 @@ Whenever possible, the extension will try to remember the previous position of t
 
 ## Components
 
-+ **Direct Window Switch** :: switch between windows using Super-TAB without any annoying menu
-+ **Mouse Follows Focus** :: teleport cursor when new windows launch and focused windows move
-+ **DBus Window Focus** :: focus windows programmatically using a simple DBus interface
+-   **Direct Window Switch** :: switch between windows using Super-TAB without any annoying menu
+-   **Mouse Follows Focus** :: teleport cursor when new windows launch and focused windows move
+-   **DBus Window Focus** :: focus windows programmatically using a simple DBus interface
 
 ## Provenance
 
