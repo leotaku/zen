@@ -41,6 +41,13 @@ export default class MouseFollowsFocusModule extends Submodule {
             const window = global.display.focus_window;
 
             if (window && window.get_buffer_rect().contains_rect(pointer)) {
+                if (!this.pointer_manager) {
+                    // This path should be unreachable, but sometimes
+                    // the watch callback seems to be run after it has
+                    // been removed and properties have been nulled.
+                    // In this case, return to avoid erroring out.
+                    return;
+                }
                 this.pointer_manager.storePosition(window, x, y);
             }
         });
