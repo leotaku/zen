@@ -1,5 +1,4 @@
 import Clutter from "gi://Clutter";
-import Meta from "gi://Meta";
 import Mtk from "gi://Mtk";
 
 function absolute_to_relative(x, y, rect) {

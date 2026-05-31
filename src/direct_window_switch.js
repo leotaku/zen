@@ -31,7 +31,6 @@
  * https://github.com/matthijskooijman/gnome-shell-more-keyboard-shortcuts
  */
 
-import Clutter from "gi://Clutter";
 import Meta from "gi://Meta";
 import Shell from "gi://Shell";
 
