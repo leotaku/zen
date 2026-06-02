@@ -7,7 +7,7 @@ import DBusWindowFocusModule from "./src/dbus_window_focus.js";
 function conditionallyEnable(settings, key, extension) {
     settings.get_boolean(key) ? extension.enable() : undefined;
 
-    settings.connect(`changed::${key}`, (settings, key) => {
+    return settings.connect(`changed::${key}`, (settings, key) => {
         settings.get_boolean(key) ? extension.enable() : extension.disable();
     });
 }
@@ -41,21 +41,23 @@ export default class ZenExtension extends Extension {
         this.mouse_follows_focus = new MouseFollowsFocusModule(this.settings);
         this.dbus_window_focus = new DBusWindowFocusModule(this.settings);
 
-        conditionallyEnable(
-            this.settings,
-            "enable-direct-window-switch",
-            this.direct_window_switch,
-        );
-        conditionallyEnable(
-            this.settings,
-            "enable-mouse-follows-focus",
-            this.mouse_follows_focus,
-        );
-        conditionallyEnable(
-            this.settings,
-            "enable-dbus-window-focus",
-            this.dbus_window_focus,
-        );
+        this.settings_signals = [
+            conditionallyEnable(
+                this.settings,
+                "enable-direct-window-switch",
+                this.direct_window_switch,
+            ),
+            conditionallyEnable(
+                this.settings,
+                "enable-mouse-follows-focus",
+                this.mouse_follows_focus,
+            ),
+            conditionallyEnable(
+                this.settings,
+                "enable-dbus-window-focus",
+                this.dbus_window_focus,
+            ),
+        ];
     }
 
     /**
@@ -66,6 +68,11 @@ export default class ZenExtension extends Extension {
      * Not doing so is the most common reason extensions are rejected in review!
      */
     disable() {
+        for (const signal of this.settings_signals) {
+            this.settings.disconnect(signal);
+        }
+        this.settings_signals = null;
+
         this.direct_window_switch.disable();
         this.mouse_follows_focus.disable();
         this.dbus_window_focus.disable();
